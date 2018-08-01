@@ -1,11 +1,33 @@
 import java.util.*;
+import java.math.*;
 
 class E04 {
     public static void main(String[] args) {
-        System.out.println(isPalindrome("hannah"));
-        System.out.println(isPalindrome("hannahs"));
-        System.out.println(isPalindrome(101));
-        System.out.println(isPalindrome(10));
+        // get a list of unique products of 3 digit numbers
+        Set<String> products = new HashSet<String>();
+        for (int i=999; i>100; i--) {
+            for (int j=999; j>100; j--) {
+                BigInteger bsum = new BigInteger(Integer.toString(i)).multiply(new BigInteger(Integer.toString(j)));
+                products.add(bsum.toString());
+            }
+        }
+
+        // convert all to BigIntegers
+        List<BigInteger> bigProducts = new ArrayList<BigInteger>();
+        for (String ex: products) {
+            bigProducts.add(new BigInteger(ex));
+        }
+        
+        // reverse sort
+        Collections.sort(bigProducts);
+        Collections.reverse(bigProducts);
+        
+        // find first palindrome
+        int i = 0;
+        while (!isPalindrome(bigProducts.get(i))) {
+            i++;
+        }
+        System.out.println(bigProducts.get(i));
     }
     public static Boolean isPalindrome(String ex) {
         List<String> letters = Arrays.asList(ex.split(""));
@@ -18,8 +40,8 @@ class E04 {
         }
         return true;
     }
-    public static Boolean isPalindrome(int x) {
-        String ex = Integer.toString(x);
+    public static Boolean isPalindrome(BigInteger x) {
+        String ex = x.toString();
         return isPalindrome(ex);
     }
 }
