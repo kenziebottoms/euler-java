@@ -1,35 +1,24 @@
 import java.util.*;
 import java.math.*;
+import java.text.DecimalFormat;
 
 class E04 {
     public static void main(String[] args) {
         // get a list of unique products of 3 digit numbers
-        Set<String> products = new HashSet<String>();
+        Set<String> palindromes = new HashSet<String>();
+        DecimalFormat df = new DecimalFormat("000000");
         for (int i=999; i>100; i--) {
             for (int j=999; j>100; j--) {
                 if (j%10 != 0 && j%10 != 0) {
                     BigInteger bsum = new BigInteger(Integer.toString(i)).multiply(new BigInteger(Integer.toString(j)));
-                    products.add(bsum.toString());
+                    if (isPalindrome(bsum)) {
+                        // add 6-character version of number to palindromes
+                        palindromes.add(df.format(bsum));
+                    }
                 }
             }
         }
-
-        // convert all to BigIntegers
-        List<BigInteger> bigProducts = new ArrayList<BigInteger>();
-        for (String ex: products) {
-            bigProducts.add(new BigInteger(ex));
-        }
-        
-        // reverse sort
-        Collections.sort(bigProducts);
-        Collections.reverse(bigProducts);
-        
-        // find first palindrome
-        int i = 0;
-        while (!isPalindrome(bigProducts.get(i))) {
-            i++;
-        }
-        System.out.println(bigProducts.get(i));
+        System.out.println(Collections.max(new ArrayList<String>(palindromes)));
     }
     // TODO: don't make a new array
     public static Boolean isPalindrome(String ex) {
