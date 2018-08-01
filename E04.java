@@ -7,8 +7,10 @@ class E04 {
         Set<String> products = new HashSet<String>();
         for (int i=999; i>100; i--) {
             for (int j=999; j>100; j--) {
-                BigInteger bsum = new BigInteger(Integer.toString(i)).multiply(new BigInteger(Integer.toString(j)));
-                products.add(bsum.toString());
+                if (j%10 != 0 && j%10 != 0) {
+                    BigInteger bsum = new BigInteger(Integer.toString(i)).multiply(new BigInteger(Integer.toString(j)));
+                    products.add(bsum.toString());
+                }
             }
         }
 
@@ -29,6 +31,7 @@ class E04 {
         }
         System.out.println(bigProducts.get(i));
     }
+    // TODO: don't make a new array
     public static Boolean isPalindrome(String ex) {
         List<String> letters = Arrays.asList(ex.split(""));
         List<String> srettel = new ArrayList<String>(letters);
