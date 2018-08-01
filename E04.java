@@ -20,13 +20,10 @@ class E04 {
         }
         System.out.println(Collections.max(new ArrayList<String>(palindromes)));
     }
-    // TODO: don't make a new array
     public static Boolean isPalindrome(String ex) {
         List<String> letters = Arrays.asList(ex.split(""));
-        List<String> srettel = new ArrayList<String>(letters);
-        Collections.reverse(srettel);
         for (int i=0; i<letters.size()/2; i++) {
-            if (!letters.get(i).equals(srettel.get(i))) {
+            if (!letters.get(i).equals(letters.get(letters.size()-1-i))) {
                 return false;
             }
         }
