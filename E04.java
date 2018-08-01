@@ -4,21 +4,21 @@ import java.text.DecimalFormat;
 
 class E04 {
     public static void main(String[] args) {
-        // get a list of unique products of 3 digit numbers
-        Set<String> palindromes = new HashSet<String>();
-        DecimalFormat df = new DecimalFormat("000000");
+        // compile a list of unique products of 3-digit numbers
+        Set<BigInteger> palindromes = new HashSet<BigInteger>();
         for (int i=999; i>100; i--) {
             for (int j=999; j>100; j--) {
+                // skip multiples of 10
                 if (j%10 != 0 && j%10 != 0) {
+                    // do the math to BigIntegers
                     BigInteger bsum = new BigInteger(Integer.toString(i)).multiply(new BigInteger(Integer.toString(j)));
                     if (isPalindrome(bsum)) {
-                        // add 6-character version of number to palindromes
-                        palindromes.add(df.format(bsum));
+                        palindromes.add(bsum);
                     }
                 }
             }
         }
-        System.out.println(Collections.max(new ArrayList<String>(palindromes)));
+        System.out.println(Collections.max(new ArrayList<BigInteger>(palindromes)));
     }
     public static Boolean isPalindrome(String ex) {
         List<String> letters = Arrays.asList(ex.split(""));
