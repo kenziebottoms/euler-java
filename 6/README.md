@@ -1,4 +1,4 @@
-# Project Euler: Java
+# Project Euler: Java 1.6
 
 ## Usage
 Unless otherwise specified:
