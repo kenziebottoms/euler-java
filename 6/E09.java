@@ -3,28 +3,23 @@ import java.util.Arrays;
 
 class E09 {
     public static void main(String[] args) {
-        int i, j, k;
         int[] finalTrip = new int[3];
-        i = 3;
-        k = 5;
-        for (j=4; j<1000; j++) {
-            for (i=3; i<j; i++) {
-                double kDubs = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-                int[] trip = {i, j, (int) kDubs};
+        for (int j=4; j<1000; j++) {
+            for (int i=3; i<j; i++) {
+                double k = Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+                int[] trip = {i, j, (int) k};
                 if (
-                    kDubs == (double) Math.floor(kDubs) &&
-                    i+j+(int)kDubs == 1000 &&
+                    k == (double) Math.floor(k) &&
+                    i+j+(int)k == 1000 &&
                     isPythy(trip)
                 ) {
-                    k = (int) Math.floor(kDubs);
                     finalTrip[0] = i;
                     finalTrip[1] = j;
-                    finalTrip[2] = k;
+                    finalTrip[2] = (int) Math.floor(k);
                     break;
                 }
             }
         }
-        System.out.println(Arrays.toString(finalTrip));
         long sum = (long) finalTrip[0]*finalTrip[1]*finalTrip[2];
         System.out.println(sum);
     }
